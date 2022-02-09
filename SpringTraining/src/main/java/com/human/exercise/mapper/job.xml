@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.exercise.iJob"><!-- 인터페이스이름 --> 
+
+<select id="jobList" resultType="com.human.exercise.Job"> <!-- 클래스이름 -->
+	select job_id,job_title from jobs order by job_title
+</select>
+<select id="getList" resultType="com.human.exercise.EmpInfo">
+	select a.employee_id,a.emp_name,a.phone_number,b.department_name 
+	from employees a,departments b 
+	where a.department_id=b.department_id and a.job_id=#{param1}
+</select>
+<select id="dept1" resultType="com.human.exercise.dept">
+	select department_id,department_name from departments order by department_name
+</select>
+<select id="getdeptList" resultType="com.human.exercise.deptInfo">
+select a.employee_id,a.emp_name,a.phone_number,a.salary 
+from employees a, departments b
+ where a.department_id=b.department_id and a.department_id=#{param1}
+</select>
+<select id="manager" resultType="com.human.exercise.mlist">
+	select employee_id, emp_name from employees order by employee_id
+</select>
+<select id="ManagerList" resultType="com.human.exercise.ManagerList">
+	select a.employee_id,a.emp_name as ename
+from employees a, employees b 
+where b.employee_id=a.manager_id and a.manager_id=#{param1}
+</select>
+</mapper> 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.exercise.iEmp"><!-- 인터페이스이름 --> 
+	<select id="getEmpList" resultType="com.human.exercise.Employee"><!-- class이름 -->
+		select employee_id,emp_name,phone_number,manager_id,hire_date 
+		  from employees
+		where employee_id=#{param1}
+		order by employee_id
+	</select>
+	<select id="getDpList" resultType="com.human.exercise.Employee">
+select a.department_id,a.department_name,b.department_name as dname,c.emp_name as manager_name 
+    from departments a, departments b, employees c
+where b.department_id(+)=a.parent_id and a.manager_id=c.employee_id(+)
+    order by a.department_id
+	</select>
+	<insert id="addMenu">
+	insert into menu(code,name,price) values(seq_menu.nextval,#{param1},#{param2})
+	</insert>
+	<insert id="addRoom">
+	insert into room(roomcode,name,type,howmany,howmuch) values(seq_room.nextval,#{param1},#{param2},#{param3},#{param4})
+	</insert>
+	<insert id="insertType">
+	insert into roomtype(typecode,name) values(#{param1},#{param2})
+	</insert>
+	<select id="getRmList" resultType="com.human.exercise.Employee">
+	select a.roomcode,a.name,b.name as typename,a.howmany,a.howmuch
+   		from room a, roomtype b
+	where a.type=b.typecode(+)
+	</select>
+	<select id="getMenuList" resultType="com.human.exercise.iMenu">
+	select code,name,price from menu order by code
+	</select>
+	<delete id="deleteMenu">
+	delete from menu where code=#{param1}
+	</delete>
+	<delete id="deleteRoom">
+	delete from room where roomcode=#{param1}
+	</delete>
+	<select id="getRoomType" resultType="com.human.exercise.iType">
+	select typecode,name from roomtype order by typecode
+	</select>
+	<update id="updateMenu">
+	update menu set name=#{param2},price=#{param3} where code=#{param1}
+	</update>
+	<update id="updateRoom">
+	update Room set name=#{param2},type=#{param3},howmany=#{param4},howmuch=#{param5} where roomcode=#{param1}
+	</update>
+</mapper> 
