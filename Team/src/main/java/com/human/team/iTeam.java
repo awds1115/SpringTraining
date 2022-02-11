@@ -10,5 +10,9 @@ public interface iTeam {
 	void UpdateMember(String userid);
 	ArrayList<Member> getTypeList();
 	void logoutMember(String userid);
+	ArrayList<Notice> getNtList();
+	void plusViewCnt(int id);
+	Notice getView(int id);
+	void writeNotice(String title, String name, String content);
 	
 }

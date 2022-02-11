@@ -55,8 +55,8 @@ h3{
 <h3 align="center">휴먼 호텔관리</h3>
    <hr>
    <table>
-   <tr><td><a href="x" style="text-decoration:none">예약&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
-      <td><a href="xxx" style="text-decoration:none">게시판&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+   <tr><td><a href="/team/home" style="text-decoration:none">홈&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+      <td><a href="/team/notice" style="text-decoration:none">게시판&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
       <td><a href="xxx" style="text-decoration:none">Q&A</a></td></tr>
    </table>
    <hr>

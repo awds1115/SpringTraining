@@ -1,15 +1,21 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   <%@ page session="true" %>
+<!DOCTYPE html>
 <html>
 <head>
-	<title>호텔홈</title>
+<meta charset="UTF-8">
+<title>게시물 목록</title>
 </head>
 <style>
 table {
     margin-left: auto;
     margin-right: auto;
+    border-collapse:collapse;
+}
+th,td{
+	 border:1px solid black;
 }
 </style>
 <body>
@@ -31,13 +37,25 @@ table {
       <td><a href="/team/" style="text-decoration:none">Q&A</a></td></tr>
    </table>
    <hr>
+<table style='border-collapse:collapse;'>
+<thead>
+	<tr><th>게시물번호</th><th>제목</th><th>작성자</th><th>작성시각</th><th>조회수</th></tr>
+</thead>
+<tbody>
+<c:forEach var="notice" items="${alNotice}">
+	<tr onclick='document.location="/team/view?id=${notice.id}"'>
+		<td>${notice.id}</td>
+		<td>${notice.title}</td>
+		<td>${notice.name}</td>
+		<td>${notice.created}</td>
+		<td>${notice.viewCnt}</td>
+	</tr>
+</c:forEach>
+	<tr><td><input type=button value='글쓰기' onclick='document.location="/team/compose"'></td></tr>
+</tbody>
+</table>
+
 </body>
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
-$(document)
-.on('click','#close',function(){
-	alert('로그인 후 이용이 가능 합니다.');
-	return false;
-})
 </script>
 </html>

@@ -3,7 +3,8 @@
 
 <mapper namespace="com.human.team.iTeam">
 <insert id="signCheck">
-	insert into member(name,gender,userid,passcode,mobile,type) values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+	insert into member(name,gender,userid,passcode,mobile,type) 
+	values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
 </insert>
 <select id="getMemberList" resultType="com.human.team.Member">
 	select userid,passcode from member
@@ -17,4 +18,17 @@
 <update id="logoutMember">
 	update member set logout_time=to_char(sysdate,'YY/MM/DD') where userid=#{param1}
 </update>
+<select id="getNtList" resultType="com.human.team.Notice">
+	select id,name,title,content,created,viewcnt from board order by id
+</select>
+<select id="getView" resultType="com.human.team.Notice">
+	select id,name,title,content,created,viewcnt from board where id=#{param1}
+</select>
+<update id="plusViewCnt">
+	update board set viewcnt=viewcnt+1 where id=#{param1} 
+</update>
+<insert id="writeNotice">
+	insert into board(id,title,name,content,created,viewcnt)
+	values(seq_board.nextval,#{param1},#{param2},#{param3},sysdate,0)
+</insert>
 </mapper>
