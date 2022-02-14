@@ -31,14 +31,26 @@ $(document)
 	return false;
 })
 .on('click','#btnDelete',function(){
-	if(confirm('정말 삭제하시겠습니까?')){
-		document.location='/team/delete?id='+$('#post_id').val();
+	if(${type}==0){
+		if(confirm('정말 삭제하시겠습니까?')){
+			document.location='/team/delete?id='+$('#notice_id').val();
+		}
+	} else {
+		alert('직원만 삭제가 가능 합니다.');
 	}
 	return false;
 	
 })
 .on('click','#btnUpdate',function(){
-	document.location='/team/update?id='+$('#post_id').val();
+	if(${type}==0){
+		if(confirm('수정 하시겠습니까?')){
+			document.location='/team/update?id='+$('#notice_id').val();
+		}
+	} else {
+		alert('직원만 수정이 가능 합니다.');
+	}
+	return false;
+	
 })
 </script>
 </html>

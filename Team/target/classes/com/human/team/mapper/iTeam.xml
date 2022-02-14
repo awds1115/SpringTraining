@@ -18,9 +18,10 @@
 <update id="logoutMember">
 	update member set logout_time=to_char(sysdate,'YY/MM/DD') where userid=#{param1}
 </update>
-<select id="getNtList" resultType="com.human.team.Notice">
-	select id,name,title,content,created,viewcnt from board order by id
-</select>
+<!-- 게시판만들기 -->
+<!-- <select id="getNtList" resultType="com.human.team.Notice"> -->
+<!-- 	select id,name,title,content,created,viewcnt from board order by id -->
+<!-- </select> -->
 <select id="getView" resultType="com.human.team.Notice">
 	select id,name,title,content,created,viewcnt from board where id=#{param1}
 </select>
@@ -31,4 +32,21 @@
 	insert into board(id,title,name,content,created,viewcnt)
 	values(seq_board.nextval,#{param1},#{param2},#{param3},sysdate,0)
 </insert>
+<delete id="deleteNotice">
+	delete from board where id=#{param1}
+</delete>
+<update id="updateNotice">
+	update board set title=#{param2},name=#{param3},content=#{param4} 
+	where id=#{param1}
+</update>
+<select id="getPaging" resultType="com.human.team.Notice"
+		parameterType="com.human.team.Notice">
+    select id, name,title, content, created, viewcnt 
+        from( select /*INDEX_DESC(board pk_board) */ 
+            rownum as id, name, title,content, created, viewcnt from board)
+    where id between 1 and 10
+</select>
+<select id="ListCount" resultType="com.human.team.PageMaker">
+	<![CDATA[select count(id) from board where id>0 ]]>
+</select>
 </mapper>

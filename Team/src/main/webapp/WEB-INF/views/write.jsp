@@ -21,7 +21,6 @@ td, th{ border:1px solid blue;}
 				  <input type=button id=btnCancel name=btnCancel value='목록보기'>
 </td></tr>
 </table>
-
 </body>
 <script src='https://code.jquery.com/jquery-3.5.0.js'></script>
 <script>
@@ -39,7 +38,8 @@ $(document)
 			datatype:'text',
 			method:'GET',
 			success:function(txt){
-				alert('완료되었습니다.');
+				alert('작성되었습니다.');
+				document.location='/team/notice';
 			}
 			})
 	return true;

@@ -1,6 +1,7 @@
 package com.human.team;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface iTeam {
 
@@ -10,9 +11,13 @@ public interface iTeam {
 	void UpdateMember(String userid);
 	ArrayList<Member> getTypeList();
 	void logoutMember(String userid);
-	ArrayList<Notice> getNtList();
+	ArrayList<Notice> getPaging();
 	void plusViewCnt(int id);
 	Notice getView(int id);
 	void writeNotice(String title, String name, String content);
+	void deleteNotice(int notice_id);
+	void updateNotice(int id, String title, String name, String content);
+	List<Notice> listpage(Criteria cri);
+	int listCount();
 	
 }
